@@ -10,17 +10,18 @@ pipeline{
     stages{
         stage('build') {
             steps {
-                echo 'building...'
+                sh 'mvn clean install'
             }
         }
         stage('test') {
             steps {
-                echo 'testing...'
+                echo 'mvn test'
             }
         }
         stage('build docker image') {
             steps {
-                sh 'docker build -t varungupta2809/myapp-test:latest .'
+                sh 'docker build --build-arg JAR_FILE=spring-boot-sample-app-0.0.1-SNAPSHOT.jar -t spring-boot-sample-app .'
+                sh 'docker tag spring-boot-sample-app varungupta2809/spring-boot-app'
             }
         }
         stage('docker login') {
@@ -30,7 +31,7 @@ pipeline{
         }
         stage('docker push') {
             steps {
-                sh 'docker push varungupta2809/myapp-test:latest'
+                sh 'docker push varungupta2809/spring-boot-sample-app:latest'
             }
         }
     }
