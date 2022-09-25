@@ -8,12 +8,12 @@ pipeline{
         DOCKERHUB_CREDENTIALS=credentials('docker-hub')
     }
     stages{
-        stage('build') {
-            steps {
-                sh 'mvn clean install'
-                stash includes: 'target/*.jar', name: 'spring-boot-sample-app-0.0.1-SNAPSHOT.jar'
-            }
-        }
+//         stage('build') {
+//             steps {
+//                 sh 'mvn clean install'
+//                 stash includes: 'target/*.jar', name: 'spring-boot-sample-app-0.0.1-SNAPSHOT.jar'
+//             }
+//         }
         stage('test') {
             steps {
                 echo 'mvn test'
