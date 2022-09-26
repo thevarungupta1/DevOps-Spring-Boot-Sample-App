@@ -8,13 +8,13 @@ pipeline {
     stages {
         stage("build"){
             steps{
-                sh "mvn -version"
-                sh "mvn clean install"
+                bat "mvn -version"
+                bat "mvn clean install"
             }
         }
         stage("test") {
             steps{
-                sh "mvn test"
+                bat "mvn test"
             }
         }
 //         stage('docker build') {
